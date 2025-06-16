@@ -1,0 +1,12 @@
+task1 ) 
+This backend is built using FastAPI and implements an agent-based architecture to generate synthetic data from natural language scenarios. The system uses four core agents: PreprocessingAgent (cleans input), FieldInferenceAgent (extracts schema and validates using Gemini), DataGeneratorAgent (generates realistic records using Gemini), and OutputFormatterAgent (formats output). A complete pipeline routes the scenario sequentially across all agents. Three main APIs are exposed: /schema/preview (extract and show schema from scenario), /schema/update(update the schema), and /data/generate (end-to-end generation). Input validation is enforced using Pydantic. Logs are also enabled.error handling and exceptional handling are also implemented.
+
+
+ Task 2: Knowledge Assistance on Multimodal Documents (Backend)
+
+This backend is built using FastAPI and helps users ask questions based on documents like PDFs or Word files. These documents may include text, images, and tables. When a user uploads a document through the /upload API, the system extracts all important content: text is read directly, images are described using a vision-language model, and tables are extracted with structure. All content is broken into  chunks and converted into embeddings using Gemini, then stored in ChromaDB. When a user asks a question through the /query API, the system finds the most relevant parts from the document and sends them to Gemini to generate a clear answer. The system handles difficult cases like unclear or empty questions and keeps logs of each step.
+
+
+Task 3: Resume Ranker – AI-Powered Talent Matcher (Backend)
+
+The Resume Ranker backend is designed using FastAPI to help companies find the best candidates by comparing multiple resumes with a single job description (JD). The system supports uploading multiple resumes and one JD file (PDF/DOCX or plain text) using the /upload API. It automatically extracts and processes the text from these files and stores the content temporarily. Once both JD and resumes are available, the /match API analyzes the JD and all resumes using a GenAI model (Gemini) to match skills, experience, and role fit. It returns the top 3 most relevant candidates along with reasoning. Strong validation ensures at least one JD and resume are required. It handles edge cases like missing files or wrong formats. The backend includes logging, error handling.
